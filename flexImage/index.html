@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0
+    }
+
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+    }
+
+    .image-box {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        flex: 1;
+    }
+
+    .img1 {
+        flex: 1;
+        background: url("./乌尤尼盐湖.jpeg");
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        text-align: center;
+        font-size: 34px;
+        color: #fff;
+        transition: color 0.2s, flex 0.7s;
+    }
+    .img1>p{
+        transition:all 0.2s;
+
+    }
+    .img1>p:first-of-type {
+        transform: translateY(-300%);
+    }
+
+    .open-active>p:first-of-type {
+        transform: translateY(0);
+    }
+
+    .img1>p:last-of-type {
+        transform: translateY(300%);
+    }
+
+    .open-active>p:last-of-type {
+        transform: translateY(0);
+    }
+
+    .open {
+        flex: 5;
+        color: yellow;
+    }
+</style>
+
+<body>
+    <!-- 
+     classList.toggle(class)不存在就新增，存在就刪除元素
+     transitionend事件在監聽動畫(transition)結束
+     event.propertyName取得動畫執行的屬性名稱 
+-->
+    <div class="image-box">
+        <div class="img1">
+            <p>hellow</p>
+            <p>world</p>
+            <p>!</p>
+        </div>
+        <div class="img1">
+            <p>hellow</p>
+            <p>world</p>
+            <p>!</p>
+        </div>
+        <div class="img1">
+            <p>hellow</p>
+            <p>world</p>
+            <p>!</p>
+        </div>
+        <div class="img1">
+            <p>hellow</p>
+            <p>world</p>
+            <p>!</p>
+        </div>
+        <div class="img1">
+            <p>hellow</p>
+            <p>world</p>
+            <p>!</p>
+        </div>
+        <div class="img1">
+            <p>hellow</p>
+            <p>world</p>
+            <p>!</p>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="./index.js">
+</script>
