@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+    看看控制台，不明白这个练习有啥用
+    https://www.cnblogs.com/alantao/p/5859358.html
+</body>
+</html>
+<script>
+function All(){
+    // alert(11);
+    for(var i = 0; i < 10; i++){
+        funcA(100);
+    }
+    funcB(1000);
+}
+function funcA(count){
+    for(var i = 0; i < count; i++){};
+}
+function funcB(count){
+    for(var i = 0; i < count; i++){};
+}
+console.profile("性能分析器");
+All();
+console.profileEnd();
+
+var mytable = [
+    {
+        name: "Alan",
+        sex : "man",
+        age : "27"
+    },
+    {
+        name: "Wu",
+        sex : "gril",
+        age : "28"
+    },
+    {
+        name: "Tao",
+        sex : "man and gril",
+        age : "29"
+    }
+]
+console.table(mytable);
+</script>
