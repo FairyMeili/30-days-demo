@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body,html{
+        width:100%;
+        height: 100%;
+        
+    }
+    .container{
+        background: #ffc600;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    input{
+        width: 400px;
+        font-size: 50px;
+        border: 10px solid #F7F7F7;
+        display: block;
+        margin:40px auto 0;
+        text-align: center;
+    }
+    .light{
+        color: yellowgreen
+    }
+    .list p{
+      display: block;
+      margin:0 auto 2px;
+      width:400px;
+      background: #fff;
+      font-size: 20px;
+      padding:20px;
+      box-sizing: border-box;
+    }
+    .list p .num{
+       
+        float: right;
+    }
+    .list p:nth-of-type(odd){
+        /* perspective 透视 */
+        transform: perspective(100px) rotateX(-3deg) translateY(3px);
+    }
+    .list p:nth-of-type(even){
+        /* perspective 透视 */
+        transform: perspective(100px) rotateX(3deg) translateY(2px) scale(1.001);
+    }
+</style>
+
+<body>
+    <div class="container">
+        <input type="text" placeholder="search" />
+        <div class="list">
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="./index.js"></script>
