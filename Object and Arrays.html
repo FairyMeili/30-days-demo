@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    let age = 100;
+    let age2 = age;
+    console.log(age, age2);
+    age = 200;
+    console.log(age, age2);
+    age2 = 400;
+    console.log(age, age2);
+
+    let name = 'Yusong';
+    let name2 = name;
+    console.log(name, name2);
+    name += ' Hsu';
+    console.log(name, name2);
+    // 基本数据类型复制不改变原值
+
+    let players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+    let players1 = players;
+    players1[2] = "333";
+    console.log(players, players1)
+    // 引用数据类型会改变原值，因为引用的是同一个内存地址
+    let arr = ["a", "b", "c", "d", "e"];
+    const arr2 = arr.slice();
+    console.log(arr2, arr);
+    arr2[2] = "333";
+    console.log(arr2, arr)
+
+    let arr3 = [].concat(arr);
+    console.log(arr3, arr);
+    arr3[3] = '333';
+    console.log(arr3, arr);
+
+    const arr4 = [...arr];
+    console.log(arr4, arr);
+    arr4[3] = '333';
+    console.log(arr4, arr);
+
+    // concat slice 扩展运算符 不会修改原值
+
+    const person = {
+      name: 'Wes Bos',
+      age: 80
+    };
+    const cap = Object.assign({}, person, { num: 50, age: 25 });
+    console.log(cap);
+    console.log(person);
+
+    const cap2 = { ...person };
+    cap2.age = 66;
+    console.log(cap2);
+    console.log(person);
+
+    const hsunight = {
+      name: 'Yusong',
+      age: 25,
+      social: {
+        facebook: 'Hsunight',
+        line: '@sky172839465'
+      }
+    };
+    console.log(hsunight);
+    const dev = JSON.parse(JSON.stringify(hsunight));
+    dev.social.facebook = 'develop';
+    console.log(hsunight);
+
+    // 对象，数组同理，对象用object.assign 扩展运算符  深拷贝 都可以
+
+</script>
