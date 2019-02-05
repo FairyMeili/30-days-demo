@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      width: 100%;
+      height: 100%;
+    }
+    input {
+      width: 300px;
+      height: 50px;
+      font-size: 30px;
+      color: burlywood;
+    }
+  </style>
+  <body>
+    <input type="text" />
+  </body>
+</html>
+<script
+  type="text/javascript"
+  src="http://www.cornify.com/js/cornify.js"
+></script>
+<script>
+  const text = "yusong";
+  const arr = [];
+  const input = document.querySelector("input");
+  input.setAttribute("placeholder", `输入 ${text}`);
+  // 数组里面的字符个数大于 字符串的个数时，每新增一个字符，将最前面一个删掉
+  var spliceText = e => {
+    arr.push(e.key);
+    arr.splice(-text.length - 1, arr.length - text.length);
+    if (arr.join("").includes(text)) {
+      cornify_add();
+    }
+    console.log(arr);
+  };
+  window.addEventListener("keyup", spliceText);
+</script>
