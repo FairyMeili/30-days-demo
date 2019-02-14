@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    } 
+    *, *:before, *:after {box-sizing: inherit; }
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+    }
+    body{
+        box-sizing: border-box;
+      background-size:cover;
+      min-height:100vh;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-family: Futura,"Trebuchet MS",Arial,sans-serif
+    }
+    body{
+        background: url("./flexImage/乌尤尼盐湖.jpeg") no-repeat center
+    }
+    .wrap {
+      padding: 20px;
+      max-width: 350px;
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin: 0;
+      font-weight: 200;
+    }
+
+    .plates {
+      margin: 0;
+      padding: 0;
+      text-align: left;
+      list-style: none;
+    }
+
+    .plates li {
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+      padding: 10px 0;
+      font-weight: 100;
+      display: flex;
+    }
+
+    .plates label {
+      flex:1;
+      cursor: pointer;
+
+    }
+
+    .plates input {
+      display: none;
+    }
+
+    .plates input + label:before {
+      content: '⬜';
+      margin-right: 10px;
+    }
+
+    .plates input:checked + label:before {
+      content: '✔';
+    }
+
+    .add-items {
+      margin-top: 20px;
+    }
+
+    .add-items input {
+      padding:10px;
+      outline:0;
+      border:1px solid rgba(0,0,0,0.1);
+    }
+</style>
+
+<body>
+    <div class="wrap">
+        <h2>LOCAL TAPAS</h2>
+        <p></p>
+        <ul class="plates">
+            <li>Loading Tapas...</li>
+        </ul>
+        <form class="add-items">
+            <input type="text" name="item" placeholder="Item Name" required>
+            <input type="submit" value="+ Add Item">
+            <hr>
+            <input type="button" name="checkAll" value="Check All">
+            <input type="button" name="uncheckAll" value="Uncheck All">
+            <input type="button" name="removeAll" value="Remove All">
+        </form>
+    </div>
+</body>
+
+</html>
+<script>
+    const form = document.querySelector('.add-items');
+    const itemsList = document.querySelector('.plates');
+    const checkAll = document.querySelector("[name=checkAll]")
+    const uncheckAll = document.querySelector("[name =uncheckAll]")
+    const removeAll = document.querySelector("[name=removeAll]")
+    let items = localStorage.getItem('items') && JSON.parse(localStorage.getItem('items')) || [];
+    var submitForm = e => {
+        e.preventDefault();
+        const input = document.querySelector('[name=item]');
+        const text = input.value;
+        const item = {
+            text,
+            done: false
+        }
+        items.push(item)
+        input.value = null;
+        localStorage.setItem("items", JSON.stringify(items))
+        renderList()
+    }
+    var renderList = () => {
+        const list = JSON.parse(localStorage.getItem("items"))
+
+        itemsList.innerHTML = list.map((item, i) => {
+            return `
+            <li>
+                    <input type="checkbox" id="item${i}" data-index="${i}" ${(item.done) ? 'checked' : ''}>
+                    <label for="item${i}">${item.text}<label>
+            </li>
+            `
+        }).join('')
+    }
+    var checkAllFn = () => {
+        //forEach 改变原数组
+        items.forEach(item => item.done = true)
+        localStorage.setItem("items", JSON.stringify(items))
+        renderList()
+    }
+    var uncheckAllFn = () => {
+        //forEach 改变原数组
+        items.forEach(item => item.done = false)
+        localStorage.setItem("items", JSON.stringify(items))
+        renderList()
+    }
+    var removeAllFn = () => {
+        items = []
+        localStorage.setItem("items", JSON.stringify(items))
+        renderList()
+    }
+    renderList()
+    removeAll.addEventListener("click", removeAllFn)
+    uncheckAll.addEventListener("click", uncheckAllFn)
+    checkAll.addEventListener("click", checkAllFn)
+    form.addEventListener("submit", submitForm)
+</script>
