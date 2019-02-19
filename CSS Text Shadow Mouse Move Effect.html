@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    html {
+        color: black;
+        font-family: sans-serif;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        background: #ccc;
+        /* width:400px; */
+    }
+
+    h1 {
+        text-shadow: 10px 10px 0 rgba(0, 0, 0, 1);
+        font-size: 100px;
+    }
+</style>
+
+<body>
+    <div class="hero">
+        <h1 contenteditable>🔥WOAH!</h1>
+    </div>
+</body>
+
+</html>
+<script>
+    const box = document.querySelector('.hero');
+    const text = box.querySelector('h1');
+    const walk = 30;
+    //textShadow args[0]:X軸偏移、args[1]:Y軸偏移、args[2]:blur模糊、args[3]:文字顏色
+
+    function shadow(e) {
+        const {
+            offsetWidth: width,
+            offsetHeight: height
+        } = box;
+
+        let {
+            offsetX: x,
+            offsetY: y
+        } = e;
+        if (this !== e.target) {
+            x += e.target.offsetLeft;
+            y += e.target.offsetTop;
+        }
+        console.log(x, y)
+
+
+        const xWalk = Math.round((x / width * walk) - (walk * (1 / 2)));
+        //    walk(x/width-(1/2))
+        const yWalk = Math.round((y / height * walk) - (15));
+
+        text.style.textShadow = `${xWalk}px ${yWalk}px 10px rgba(100, 100, 255, 0.5)`;
+
+
+    }
+
+    box.addEventListener('mousemove', shadow);
+</script>
