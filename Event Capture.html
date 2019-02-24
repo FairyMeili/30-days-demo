@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    html {
+        box-sizing: border-box;
+    }
+
+    *,
+    *:before,
+    *:after {
+        box-sizing: inherit;
+    }
+
+    div {
+        width: 100%;
+        padding: 100px;
+    }
+
+    .one {
+        background: thistle;
+    }
+
+    .two {
+        background: mistyrose;
+    }
+
+    .three {
+        background: coral;
+        text-align: center;
+        font-size: 150%;
+        font-weight: bolder;
+    }
+</style>
+
+<body>
+    <div class="one">
+        <div class="two">
+            <div class="three">
+                Click Me
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+// 事件冒泡 ，事件捕获
+// click event如果点击到的元素其父节点也有同样的监听事件则会一起被触发，这叫bubble事件冒泡
+// event監聽觸發function執行時這個scope中的this指的是監聽的元素，event.target是觸發監聽的元素
+// event.stopPropagation()避免遇到1.的狀況連續觸發監聽事件，這個API可以終止第一個之後的觸發事件
+// element.addEventListener()第三個元素如果是 { capture: true } 就會從最外層的元素開始觸發
+// element.addEventListener()第三個元素如果是 { once: true } 事件觸發一次就會取消，相當於 element.removeEventListener()
+const divs = document.querySelectorAll('div');
+
+function logText(e) {
+  // console.log(this.classList.value);
+  alert(this.classList.value);
+  // e.stopPropagation();
+}
+
+divs.forEach(div => div.addEventListener('click', logText, {
+  capture: false,
+  // capture: true,
+  once: false,
+  // once: true
+}));
+</script>
